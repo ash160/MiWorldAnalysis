@@ -1,0 +1,20 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+['common_models.common_api_lib', 'common_models.common_count_viewset', 'common_models.common_id_generator', 'common_models.async_viewset']
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+['network_models.socket_manager', 'network_models.socket_manager (copy 1)', 'network_models.call_process', 'network_models.buffer_call_process', 'network_models.socket_try', 'network_models.buffer_call_process_1']
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+['root_models.container_manage', 'root_models.nginx_config_generator', 'root_models.root_manage_services', 'root_models.monitor_init_tasks', 'root_models.namespace', 'root_models.url_mapper', 'root_models.make_file_dir.autodata_insert', 'root_models.zip_creater', 'root_models.autodata_insert', 'root_models.monitor_client_microservices', 'root_models.myconfig', 'root_models.monitor_suppervisor_microservices', 'root_models.root_process', 'root_models.final', 'root_models.class_urls_mapper', 'root_models.root_to_supperviser_communication']
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+['thread_models.support_only_one_thread', 'thread_models.coroutine_manager_only_one_thread', 'thread_models.one_only_thread']
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+['suport_thread.mytry', 'suport_thread.import_model']
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+['permission_model.permission_checker', 'permission_model.db_models']
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+['authentication_model.database_models', 'authentication_model.encrypcommunication', 'authentication_model.security_data_base', 'authentication_model.secureity_dbclient', 'authentication_model.security_db', 'authentication_model.final']
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+['back_end_processes.fanout_model.kafka_backend_process', 'back_end_processes.fanout_model.kafka_client_lib', 'back_end_processes.fanout_model.kafka_db', 'back_end_processes.fanout_model.kafka_server', 'back_end_processes.fanout_model.kafka_fun_namespace']
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+['meta_model.container_db']
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+['service_models.data_base.database_generators.cassandra_generator.cql_generator', 'service_models.data_base.database_generators.postgres_generator.sql_generator', 'service_models.data_base.database_generators.postgres_generator.sql_creater', 'service_models.data_base.generator.common_generator', 'service_models.data_base.generator.db_models_generator_backup', 'service_models.data_base.generator.serializer_generator', 'service_models.data_base.generator.db_models_generator', 'service_models.data_base.db_common_model.db_manager_client', 'service_models.data_base.db_common_model.serializer', 'service_models.data_base.db_common_model.db_manager_viewset', 'service_models.data_base.db_common_model.db_client', 'service_models.data_base.database_viewsets.postgras_model.postgras_manager_viewset', 'service_models.data_base.database_viewsets.redis_model.redis_count_manager', 'service_models.data_base.database_viewsets.redis_model.redis_not_list_manager', 'service_models.data_base.database_viewsets.redis_model.redis_list_manager', 'service_models.data_base.database_viewsets.redis_model.redis_variable_manager', 'service_models.data_base.database_viewsets.redis_model.redis_viewset', 'service_models.data_base.database_viewsets.cassandra_model.cassandra_viewset', 'service_models.data_base.database_viewsets.cassandra_model.cassandra_backend_supported_viewset']

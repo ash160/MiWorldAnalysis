@@ -1,0 +1,64 @@
+{}
+{'common_api_lib': ['router,GenClass', 'custom'], 'db_manager_client': ['DBClient', 'custom'], 'permission_model.permission_checker': ['ParmissionChacker', 'custom'], 'datetime': ['sys'], 'serializers': ['Serializer', 'custom'], 'common_model.async_viewset': ['ViewSetMaster', 'custom']}
+{}
+{'common_api_lib': ['router,GenClass', 'custom'], 'db_manager_client': ['DBClient', 'custom'], 'permission_model.permission_checker': ['ParmissionChecker', 'custom'], 'datetime': ['sys'], 'serializers': ['Serializer', 'custom']}
+{'config': ['NETWORK_INTERFACE,NETWORK_CLIENT_TIME_OUT', 'custom'], 'network_models.buffer_call_process': ['buffer_call_func', 'custom'], 'network_models.call_process': ['call_func', 'custom'], 'aiohttp': ['sys']}
+{'config': ['NETWORK_INTERFACE,NETWORK_CLIENT_TIME_OUT', 'custom'], 'aiohttp': ['sys']}
+{'ujson': ['sys'], 'aiohttp': ['sys']}
+{'ujson': ['sys'], 'aiohttp': ['sys']}
+{}
+{}
+{'thread_models.one_only_thread': ['thread_manager', 'custom'], 'thread_models.coroutine_manager_only_one_thread': ['coroutine_manager', 'custom'], 'common_models.common_api_lib': ['GenClass', 'custom'], 'config': ['NETWORK_INTERFACE,MONITOR_NETWORK_INTERFACE,SYSTEM_STATUS,NGINX,SYSTEM_STATUS,DEFAULT', 'custom'], 'thread_models.support_only_one_thread': ['MicroService', 'custom'], 'ujson': ['sys'], 'asyncio': ['sys'], 'aiohttp': ['web', 'sys'], 'threading': ['sys']}
+{'os': ['sys']}
+{'uuid': ['sys']}
+{}
+{'meta_model.container_db': ['MicroserviceResource', 'custom'], 'ujson': ['sys']}
+{'meta_model.container_db': ['MicroserviceResource', 'custom']}
+{'re': ['sys'], 'os': ['sys'], 'pathlib': ['sys'], 'time': ['sys'], 'meta_model.container_db': ['MicroserviceResource', 'custom'], 'datetime': ['datetime', 'sys'], 'json': ['sys']}
+{'os': ['sys'], 'sys': ['sys'], 'zipfile': ['sys']}
+{'re': ['sys'], 'os': ['sys'], 'pathlib': ['sys'], 'time': ['sys'], 'meta_model.container_db': ['MicroserviceResource', 'custom'], 'datetime': ['datetime', 'sys'], 'json': ['sys'], 'root_models.namespace': ['filter_core', 'custom']}
+{'ujson': ['sys'], 'common_models.common_api_lib': ['GenClass', 'custom']}
+{'suport_thread': ['import_model', 'custom'], 'root_models.nginx_config_generator': ['NginxConfig', 'custom']}
+{'os': ['sys'], 'datetime': ['datetime', 'sys'], 'ipaddress': ['IPv4Address', 'sys'], 'meta_model.container_db': ['ContainerObject,ContainerIso,NetworkInterface,ContainerObjectNetworking,ContainerNetworking,UrlMethodMapping,UrlTypeProtocalMapping,ContanerTypeToNginxMapping,MicroserviceResource', 'custom'], 'ujson': ['sys'], 'asyncio': ['sys']}
+{'re': ['sys'], 'os': ['sys'], 'asyncio': ['sys'], 'datetime': ['sys'], 'uuid': ['sys'], 'time': ['sys'], 'threading': ['sys'], 'common_models.common_api_lib': ['GenClass,get_ip', 'custom'], 'root_models.nginx_config_generator': ['nginxconfig_obj', 'custom'], 'network_models.socket_manager': ['SocketManagerClass', 'custom'], 'thread_models.one_only_thread': ['thread_manager', 'custom'], 'thread_models.support_only_one_thread': ['MicroService', 'custom'], 'root_models.zip_creater': ['extract_zip_file', 'custom'], 'root_models.url_mapper': ['UrlMapper', 'custom'], 'root_models.autodata_insert': ['NamespaceFileMapper', 'custom'], 'meta_model.container_db': ['MicroserviceResource,ContainerObject,ContainerObjectNetworking', 'custom'], 'aiohttp': ['web', 'sys'], 'ipaddress': ['IPv4Address', 'sys'], 'config': ['MONITOR_NETWORK_INTERFACE,MONITOR_TEMP_ZIPE_STORE,MONITOR_TEMP_FOLDER,MONITER_BRIDGE_NAME,SYSTEM_STATUS', 'custom'], 'root_models.root_manage_services': ['RootManagementServices', 'custom'], 'root_models.root_to_supperviser_communication': ['RootToSupervisorCommunication', 'custom'], 'root_models.monitor_client_microservices': ['MonitorAnalysisModels', 'custom'], 'root_models.monitor_suppervisor_microservices': ['RootServiceForMannageSupervisor', 'custom'], 'root_models.monitor_init_tasks': ['init_task', 'custom'], 'ujson': ['sys']}
+{'os': ['sys']}
+{'os': ['sys'], 'pathlib': ['sys'], 'importlib': ['custom'], 'ujson': ['sys'], 'base_models.meta_model.container_db': ['MicroserviceResource', 'custom'], 'service_models.data_base.generator.db_models_generator': ['DBGenerator', 'custom'], 'root_models.namespace': ['filter_core', 'custom']}
+{'meta_model.container_db': ['ContainerObject,ContainerObjectNetworking', 'custom'], 'config': ['NETWORK_INTERFACE', 'custom']}
+{'aiohttp': ['web,WSMsgType', 'sys'], 'common_models.common_api_lib': ['router', 'custom'], 'asyncio': ['sys'], 'ujson': ['sys'], 'time': ['sys']}
+{'asyncio': ['sys']}
+{'threading': ['sys'], 'asyncio': ['sys'], 'network_models.socket_manager': ['SocketManagerClass', 'custom'], 'thread_models.coroutine_manager_only_one_thread': ['coroutine_manager', 'custom'], 'thread_models.support_only_one_thread': ['MicroService', 'custom']}
+{}
+{'sys': ['sys'], 'importlib': ['custom'], 'ujson': ['sys'], 'uuid': ['sys'], 'meta_model.container_db': ['MicroserviceResource', 'custom'], 'os': ['sys'], 'pathlib': ['sys'], 'time': ['sys'], '=': ['custom']}
+{'PermissionUserGroup.DBClient': ['PermissionUserGroupDBClient', 'custom'], 'PermissionGroupBitsMapper.DBClient': ['PermissionGroupBitsMapperDBClient', 'custom'], 'PermissionPermissionForModel.DBClient': ['PermissionPermissionForModelDBClient', 'custom'], 'PermissionGroupPermissionForItem.DBClient': ['PermissionGroupPermissionForItemDBClient', 'custom'], 'PermissionPermissionCode.DBClient': ['PermissionPermissionCodeDBClient', 'custom'], 'PermissionItemOwner.DBClient': ['PermissionItemOwnerDBClient', 'custom'], 'PermissionItemDefaultPermission.DBClient': ['PermissionItemDefaultPermissionDBClient', 'custom'], 'time': ['sys']}
+{}
+{}
+{'Crypto.PublicKey': ['RSA', 'custom'], 'Crypto.Cipher': ['AES', 'custom'], 'Crypto.Signature': ['PKCS1_v1_5', 'custom'], 'Crypto.Hash': ['SHA512,', 'custom'], 'Crypto': ['Random', 'custom'], 'base64': ['b64encode,', 'custom'], 'rsa': ['custom'], 'secrets': ['custom']}
+{'service_models.data_base.database_viewsets.radis_model.radis_viewset': ['SimpleRedisManager', 'custom']}
+{'service_models.data_base.db_common_model.db_manager_client': ['', 'custom']}
+{'uuid': ['sys'], 'cassandra.cqlengine': ['connection', 'sys'], 'datetime': ['datetime', 'sys'], 'cassandra.cqlengine.management': ['sync_table', 'sys'], 'cassandra.cqlengine.models': ['Model', 'sys'], 'cassandra.cqlengine.connection': ['setup', 'sys'], 'config': ['AUTHENTICAT_MODEL', 'custom']}
+{'Crypto.PublicKey': ['RSA', 'custom'], 'Crypto.Cipher': ['AES', 'custom'], 'Crypto.Signature': ['PKCS1_v1_5', 'custom'], 'Crypto.Hash': ['SHA512,', 'custom'], 'Crypto': ['Random', 'custom'], 'base64': ['b64encode,', 'custom'], 'rsa': ['custom'], 'secrets': ['custom'], 'authentication_model': ['encrypcommunication', 'custom'], 'ujson': ['sys'], 'authentication_model.secureity_dbclient': ['SecurityDataBaseClient', 'custom']}
+{'config': ['DEFAULT,NETWORK_INTERFACE', 'custom'], 'common_models.common_api_lib': ['GenClass,BackendProcess', 'custom'], 'meta_model.container_db': ['MicroserviceResource', 'custom'], 'back_end_processes.fanout_model.kafka_db': ['KafkaMsgMeta', 'custom'], 'UserTopicsList.DB_client': ['UserTopicsListDB_client', 'custom'], 'ujson': ['sys']}
+{}
+{'common_models.common_api_lib': ['GenClass', 'custom'], 'config': ['KAFKA_META_DATA', 'custom'], 'uuid': ['sys'], 'cassandra.cqlengine': ['columns,connection', 'sys'], 'datetime': ['datetime', 'sys'], 'cassandra.cqlengine.management': ['sync_table', 'sys'], 'cassandra.cqlengine.models': ['Model', 'sys'], 'cassandra.cqlengine.connection': ['setup', 'sys'], 'ujson': ['sys']}
+{}
+{}
+{'uuid': ['sys'], 'cassandra.cqlengine': ['columns,connection', 'sys'], 'datetime': ['datetime', 'sys'], 'cassandra.cqlengine.management': ['sync_table', 'sys'], 'cassandra.cqlengine.models': ['Model', 'sys'], 'cassandra.cqlengine.connection': ['setup', 'sys'], 'config': ['MICROSERVICE_API', 'custom']}
+{}
+{}
+{'re': ['sys'], 'sqlalchemy': ['sys']}
+{}
+{'service_models.data_base.database_generators.postgres_generator.sql_generator': ['SQLGenerator', 'custom'], 'service_models.data_base.database_generators.cassandra_generator.cql_generator': ['CQLGenerator', 'custom'], 'meta_model.container_db': ['MicroserviceResource', 'custom'], 'base_model': ['config', 'custom'], 'datetime': ['datetime', 'sys'], 'time': ['sys'], 'ujson': ['sys']}
+{}
+{'time': ['sys'], 'ujson': ['sys'], 'copy': ['sys'], 'base_model': ['config', 'custom'], 'datetime': ['datetime', 'sys'], 'service_models.data_base.database_generators.postgres_generator.sql_generator': ['SQLGenerator', 'custom'], 'service_models.data_base.database_generators.cassandra_generator.cql_generator': ['CQLGenerator', 'custom'], 'service_models.data_base.generator.serializer_generator': ['SerializerGenerator', 'custom'], 'meta_model.container_db': ['MicroserviceResource', 'custom']}
+{'config': ['NGINX,NETWORK_INTERFACE', 'custom']}
+{'re': ['sys'], 'validator_collection': ['validators', 'sys']}
+{'common_models.common_api_lib': ['GenClass', 'custom']}
+{}
+{'service_models.data_base.db_common_model.db_manager_viewset': ['DBManagerClass', 'custom'], 'common_models.common_api_lib': ['BackendProcess', 'custom']}
+{'ujson': ['sys'], 'redis': ['sys'], 'time': ['sys'], 'service_models.data_base.database_viewsets.redis_model.redis_viewset': ['RedisManager', 'custom']}
+{'ujson': ['sys'], 'redis': ['sys'], 'time': ['sys'], 'service_models.data_base.database_viewsets.redis_model.redis_viewset': ['RedisManager', 'custom']}
+{'ujson': ['sys'], 'redis': ['sys'], 'time': ['sys'], 'service_models.data_base.database_viewsets.redis_model.redis_viewset': ['RedisManager', 'custom']}
+{'ujson': ['sys'], 'redis': ['sys'], 'time': ['sys'], 'service_models.data_base.database_viewsets.redis_model.redis_viewset': ['RedisManager', 'custom']}
+{'ujson': ['sys'], 'redis': ['sys'], 'time': ['sys'], 'service_models.data_base.db_common_model.db_manager_viewset': ['DBManagerClass', 'custom']}
+{'ujson': ['sys'], 'service_models.data_base.db_common_model.db_manager_viewset': ['DBManagerClass', 'custom']}
+{'service_models.data_base.database_viewsets.cassandra_model.cassandra_viewset': ['CassandraManager', 'custom'], 'common_models.common_api_lib': ['BackendProcess', 'custom']}

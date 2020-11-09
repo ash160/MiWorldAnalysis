@@ -1,0 +1,4 @@
+MicroserviceResource <namespace=common_models.common_api_lib, is_core=True>
+MicroserviceResource <namespace=common_models.common_count_viewset, is_core=True>
+MicroserviceResource <namespace=common_models.common_id_generator, is_core=True>
+MicroserviceResource <namespace=common_models.async_viewset, is_core=True>
