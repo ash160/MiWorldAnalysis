@@ -1,0 +1,268 @@
+from aiokafka import AIOKafkaConsumer,AIOKafkaProducer
+
+#### Loop is BigBoss for every where ############
+#### kafka manager manager producer and consumer object life cycle ###
+#### It is responcibale for data streaming to users.
+#### The producer object is created and mainted for each loop.
+####When an user want to send a massage he/she could take the produced object to send the data.#####
+#### It create equal amount of consumer for each user for each loop ####
+#### consumer object is created when user login and destroyed after user logout ###
+
+from support.socket_manager import socket_manager_obj
+#from django_db import models
+ 
+import uuid
+from cassandra.cqlengine import columns
+from cassandra.cqlengine import connection
+from datetime import datetime
+from cassandra.cqlengine.management import sync_table
+from cassandra.cqlengine.models import Model
+from cassandra.cqlengine.connection import setup
+
+
+class KafkaMsgMeta(Model):
+    kafka_broker = columns.Text(partition_key = True, required = True)
+    funbody = columns.Text(required=True)
+    fun_name = columns.Text(partition_key = True, required = True)
+    fun_type = columns.Text(required=True)
+    import_parameter = columns.Text()
+    extra_info = columns.Text()
+
+setup(['172.18.0.5'], 'miworld', retry_connect=True)
+sync_table(KafkaMsgMeta)
+
+#communication_methods = {'RR':{'subcribe':None,'logout':None},'OO':{'post_like':'post_like','story_like':'story_like','notification':'notifications'},'OM':{'post','story'}}##communication_db.objects.get.all()
+class  kafka_metadata_service:
+    async def list(request):
+        data = KafkaMsgMeta.objects.all()
+
+        return data
+    async def retrive(request):
+        pk = request['pk']
+        data = KafkaMsgMeta.objects.get(pk)
+
+        return data
+
+        
+
+    async def create(request):
+        data = {
+                'funbody':request['funbody'],
+                'fun_name':request['fun_name'],
+                'fun_type':request['fun_type'],
+                'import_parameter':request['import_parameter'],
+                'extra_info':request['extra_infor']
+                }
+        KafkaMsgMeta(**data).save()
+        return 'creatred'
+
+    async def update(request):
+        data = {
+                'funbody':request['funbody'],
+                'fun_name':request['fun_name'],
+                'fun_type':request['fun_type'],
+                'import_parameter':request['import_parameter'],
+                'extra_info':request['extra_infor']
+                }
+        KafkaMsgMeta(**data).save()
+        return 'Updated'
+
+        
+
+    async def delete(request):
+        fun_name = request['func_name']
+        
+        KafkaMsgMeta.objects().get(fun_name = fun_naem).delete()
+        return 'Delete is done'
+ 
+
+
+
+
+
+class kafaka_client:
+    async def subscribe(self,request):
+        topic = request['topic']
+        msg = {'fun_name':'subscribe','fun_type':'system','topic':topic}
+        m = kafka_obj.register_producer(msg,topic)
+        await kafka_obj.producer_send_msg(loop_index,msg,topic)
+        return 'msg send successfully '
+
+
+
+
+class kafka_microservice:
+    async def create_consumer(self,request):
+        user_id = request['user']
+        topics = request['topics'].split(',')
+        await kafka_obj.conmuser_consume_msg(self,loop_index,user_id,topics)
+
+    async def send_msg(self,request):
+        msg = request['msg']
+        topic = request['topic']
+        m = kafka_obj.register_producer(msg,topic)
+        await kafka_obj.producer_send_msg(loop_index,msg,topic)
+
+    async def kafka_stop(self,request):
+        kafka_obj.STOP = True
+
+
+
+
+# async def 
+
+
+
+
+class Producer_Consumer_model:
+    MAXIMUM_PRODUCER = 3
+    MINIMUM_PRODUCER  = 1
+    MAXIMUM_CONSUMER = 3
+    MINIMUM_CONSUMER = 0
+    #user_request_url = []
+    #request_list = []
+    STOP = False
+
+    loop_list = []
+    producer_list = [] ### It is a 2d array[loop][producer] of producer object for each loop ####
+    number_of_producer = [] ### It is a 1d array of int for count value of producer for each loop ####
+    number_of_consumer = [] ### It is a 1d array of int for count value of comsumer for each loop ####
+
+    #user_consumer = [] #### It is a array of  dic {user_id:consumer} #######
+    server_name = 'localhost:9000'#'localhost:9092'  #### default server. I will change it later ####
+    default_topic =["default_topic"]
+    rule_fun_type = {'system':'*','user':'msg','kafka_admin':'msg'}
+
+    class KafkaMetaClass:
+        fun_list = {}### {fun_name:{fun_type}}
+
+        def add_set_method(self,obj,fun_name,fun_body,fun_type):
+            exec(fun_body)
+            setattr(obj,fun_name,locals()[fun_name])
+            fun_list[fun_name] = {'fun':locals()[fun_name],'fun_type':fun_type}
+
+
+        def delete_method(self,obj,fun_name):
+            m= getattr(obj,fun_name)
+            del m
+            del fun_list[fun_name]
+
+    def kafka_add_set_fun(self,msg):
+        fun_name = msg['fun_name']
+        fun_data = KafkaMsgMeta.opjects().get(fun_name = fun_name)
+        self.kafkametaobj.add_set_method(self,fun_data.fun_name,fun_data.fun_body,fun_data.fun_type)
+    def kafka_delete_fun(self,msg):
+        fun_name = msg['fun_name']
+        self.kafkametaobj.delete_method(self,fun_name)
+
+    def __init__(self):
+        self.kafkametaobj = self.KafkaMetaClass
+        fun_data = KafkaMsgMeta.objects().all()
+        self.kafkametaobj.fun_list['kafka_add_set_fun']= {'fun':self.kafka_add_set_fun,'fun_type':'kafka_admin'}
+        self.kafkametaobj.fun_list['kafka_delete_fun']= {'fun':self.kafka_delete_fun,'fun_type':'kafka_admin'}
+        for data in fun_data:
+            self.kafkametaobj.add_set_method(data.fun_name,data.fun_body,data.fun_type)
+
+    def ragister_loop(self,loop): ##### Initialize everyone #####
+        self.loop_list.append(loop) ### This will be unused in future [loop1,loop2,loop3,....]
+        self.producer_list.append([]) ##### [[],[],[],.....]
+        self.number_of_producer.append(0) ##### [0,0,0,....]
+        self.number_of_consumer.append(0)
+        #self.user_consumer.append({})   #### [{},{},{},.......]
+
+
+    def create_consumer(self,loop_index,user_id, topic_list = None):
+        #### This function will create a consumer for each user process ####
+        loop = self.loop_list[loop_index]
+        consumer_obj = None
+        if self.number_of_consumer[loop_index] <=self.MAXIMUM_CONSUMER:
+            if topic_list is None:
+                consumer_obj = AIOKafkaConsumer(self.default_topic,loop=loop, bootstrap_servers=self.server_name,group_id=user_id)
+            else:
+                consumer_obj = AIOKafkaConsumer(topic_list,loop=loop, bootstrap_servers=self.server_name,group_id=user_id)
+            #self.user_consumer[loop_index][user_id] = consumer_obj
+            self.number_of_consumer[loop_index] += 1
+            return consumer_obj
+        else:
+            return False
+
+
+
+
+
+    def register_producer(self,msg,topic):
+
+        request_json_meta_data = {"servic":"kafka","service_type":"producer","msg": msg, "topic": topic}
+
+        return request_json_meta_data
+    def register_consumer(self,topics):
+        request_json_meta_data = {"servic":"kafka","service_type":"consumer","topics": topics}
+
+        return request_json_meta_data
+
+    async def kafka_service(user_id,loop_index,task_id):
+        if coro_worker_manager.corouting_mager_obj.corouting_work_list[user_id][task_id]["status"]  !="DONE":
+            task = coro_worker_manager.corouting_mager_obj.corouting_work_list[user_id][task_id]
+            if task["service_type"] == "producer":
+                await producer_send_msg(loop_index,task["msg"],task["topic"])
+            if task["service_type"] == "consumer":
+                await conmuser_consume_msg(loop_index,user_id,task["topics"])
+
+            if task["service_type"]=="consumer_del":
+                await consumer_del(loop_index,user_id)
+
+
+    def update_topics(self,user_id,topics_list):
+        #### This function will update user topics list ####
+        cache_manager.cache_manager_obj.create("user_topic_list",topics_list,user_id)
+
+    def assing_producer(self,loop_index):
+        if not self.producer_list[loop_index] == []:
+            return self.producer_list[loop_index].pop()
+        elif self.number_of_producer[loop_index] < self.MAXIMUM_PRODUCER:
+            temp_producer = AIOKafkaProducer(loop=self.loop_list[loop_index], bootstrap_servers=self.server_name)
+            self.number_of_producer[loop_index] += 1
+            return temp_producer
+        else:
+            return False
+
+    async def producer_send_msg(self,loop_index,msg,topic):
+
+        producer_obj = self.assing_producer(loop_index)
+        if not producer_obj:
+            return False
+        await producer_obj.start()
+        try:
+            await producer_obj.send_and_wait(topic, str.encode(msg))
+        finally:
+            # Wait for all pending messages to be delivered or expire.
+
+            await producer_obj.stop()
+            self.producer_list[loop_index].append(producer_obj)
+
+    async def conmuser_consume_msg(self,loop_index,user_id,topics):
+        consumer_obj =self.create_consumer(loop_index,user_id,topics)#self.assing_consumer(user_id,loop_index,topics)
+        if not consumer_obj:
+            return False
+
+
+        await consumer_obj.start()
+        try:
+            async for msg in consumer_obj:
+                if self.rule_fun_type[self.kafkametaobj.fun_list[msg['sub_topic']]['fun_type']] == "*":
+                    self.kafkametaobj.fun_list[msg['sub_topic']]['fun'](self,consumer_obj,msg)
+                elif self.rule_fun_type[self.kafkametaobj.fun_list[msg['sub_topic']]['fun_type']] == "msg":
+                    self.kafkametaobj.fun_list[msg['sub_topic']]['fun'](msg)
+
+
+
+        finally:
+            await  consumer_obj.stop()
+            await consumer_obj.close()
+            self.number_of_consumer[loop_index] -=1
+            del consumer_obj
+
+
+
+
+#kafka_obj = Producer_Consumer_model()

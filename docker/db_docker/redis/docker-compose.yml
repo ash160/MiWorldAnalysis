@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+        permission_matrix:
+                image: redis:alpine
+                environment:
+                        - ALLOW_EMPTY_PASSWORD=yes
+                       #- REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+                restart: always
+                ports:
+                        - "6379"
+                volumes:
+                        - redis_data:/var/lib/redis/data
+                networks:
+                        - redis_bridge
+
+        token_info:
+                image: redis:alpine
+                environment:
+                        - ALLOW_EMPTY_PASSWORD=yes
+                       #- REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+                restart: always
+ 
+                ports:
+                        - "6379"
+                volumes:
+                        - redis_data:/var/lib/redis/data
+                networks:
+                        - redis_bridge
+
+
+volumes:
+        redis_data:
+                driver: local
+             
+networks:
+        redis_bridge:
+                external: true
+
+

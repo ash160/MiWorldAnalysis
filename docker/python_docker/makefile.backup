@@ -1,0 +1,33 @@
+REDIS_BRIG = miworld_db
+POSTGRAS_BRIG = miworld_db 
+CASSANDRA_BIG = miworld_db
+INTRA_TUNNEL = miworld_net
+PUBLIC_TUNNEL = miworld_service 
+
+print:
+	echo ${IMAGE_NAME}
+
+compile:
+	docker build -t ${IMAGE_NAME} ./${DIR_NAME}
+
+create_container: 
+	docker create -it --rm=True --name ${CONTAINER_NAME} ${IMAGE_NAME}
+
+net_connect:
+ifeq (${IMAGE_NAME},redis_image)
+	docker network connect --ip ${IP_ADDRESS} ${REDIS_BRIG} ${CONTAINER_NAME}
+endif
+ifeq ($(IMAGE_NAME),postgras_image)
+	docker network connect --ip ${IP_ADDRESS} ${POSTGRAS_BRIG} ${CONTAINER_NAME}
+endif	
+ifeq ($(IMAGE_NAME) ,cassandra_image)
+	docker network connect --ip ${IP_ADDRESS} ${CASSANDRA_BIG} ${CONTAINER_NAME}
+endif
+ifeq ($(IMAGE_NAME),common_image)
+	docker network connect ${REDIS_BRIG} ${CONTAINER_NAME}
+	docker network connect ${INTRA_TUNNEL} ${CONTAINER_NAME}
+	docker network connect ${PUBLIC_TUNNEL} ${CONTAINER_NAME}
+endif
+
+run:
+	docker start ${CONTAINER_NAME}

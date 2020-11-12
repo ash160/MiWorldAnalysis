@@ -1,0 +1,42 @@
+version: '3'
+services:
+        microservice_metadata:
+                image: postgres:alpine
+                environment:
+                        - POSTGRES_USER=postgres
+                        - POSTGRES_PASSWORD=admin
+                        - POSTGRES_DB=postgres
+                volumes:
+                        - postgres_data:/var/lib/postgresql/datai
+                networks:
+                        monitor_bridge:
+                                #ipv4_address: 127.0.0.1
+                ports:
+                        - "5432"
+                restart: always
+
+        permission_matrix:
+                image: postgres:alpine
+                environment:
+                        - POSTGRES_USER=postgres
+                        - POSTGRES_PASSWORD=admin
+                        - POSTGRES_DB=postgres
+                volumes:
+                        - postgres_data:/var/lib/postgresql/datai
+                networks:
+                        postgres_bridge:
+                                #ipv4_address: 127.0.0.1
+                ports:
+                        - "5432"
+                restart: always
+
+
+volumes:
+        postgres_data:
+                driver: local
+
+networks:
+        postgres_bridge:
+                external: true
+        monitor_bridge:
+                external: true

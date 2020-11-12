@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+        database:
+                image: nginx:alpine
+                container_name: nginx_database_connector_04
+                volumes:
+                        - ./db_con:/etc/nginx:ro
+                          #- /home/miworld/micro_server/docker/nginx_docker/db_con:/etc/nginx/conf.d:ro
+                restart: always
+                #ports:
+                #        - "8080:80"
+                networks:
+                        - cassandra_bridge
+                        - postgres_bridge
+                        - redis_bridge
+                        - manager_output_bridge
+                        - kafka_bridge
+        
+        manager:
+                image: nginx:alpine
+                container_name: nginx_manager_connector_04
+                volumes:
+                        - ./mn_con:/etc/nginx:ro
+                restart: always
+                networks:
+                        - manager_input_bridge
+                        - ui_output_bridge
+        
+        ui:
+                build: ./ui_con
+                #image: nginx:alpine
+                container_name: nginx_ui_connector_04
+                volumes:
+                        - ./ui_con:/etc/nginx/conf.d:ro
+                          #- /home/miworld/micro_server/docker/nginx_docker/ui_con/:/etc/nginx/conf.d/:ro
+                restart: always
+                ports:
+                        - "443:443"
+                networks:
+                        - ui_input_bridge
+        
+
+networks:
+        cassandra_bridge:
+                external: true
+        postgres_bridge:
+                external: true
+        redis_bridge:
+                external: true
+        kafka_bridge:
+                external: true
+        manager_output_bridge:
+                external: true
+        manager_input_bridge:
+                external: true
+        ui_output_bridge:
+                external: true
+        ui_input_bridge:
+                external: true
+        

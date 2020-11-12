@@ -1,0 +1,73 @@
+version: '3'
+
+services:
+        db_manager:
+                build: ./db_manager
+                container_name: database_manager
+                restart: always
+                #expose:
+                #        - 9998
+                #        - 9999
+                #        - 10000
+                networks:
+                        - manager_input_bridge
+                        - manager_output_bridge
+                        - monitor_bridge
+        
+        supervisor:
+                build: ./container_supervisor
+                container_name: container_supervisor
+                restart: always
+                #expose:
+                #        - 9998
+                #        - 9999
+                #        - 10000
+                networks:
+                        - manager_input_bridge
+                        - manager_output_bridge
+                        - monitor_bridge
+        
+        monitor:
+                build: ./monitor
+                container_name: application_monitor
+                restart: always
+                #ports:
+                #- "10:10"
+                networks:
+                        - monitor_bridge
+                #volumes:
+                ##- ~/micro_server/docker/nginx_docker:/monitor/:Z
+                          
+
+        ui:
+                #image: mytry
+                build: ./ui
+                container_name: user_interface
+                restart: always
+                expose:
+                        - 8000
+                networks:
+                        - ui_input_bridge
+                        - ui_output_bridge
+                        - monitor_bridge
+                
+        test_manager:
+                build: ./test_manager
+                container_name: test_manager
+                restart: always
+                ports:
+                        - "8080:8080"
+                networks:
+                        - monitor_bridge
+
+networks:
+        manager_output_bridge:
+                external: true
+        manager_input_bridge:
+                external: true
+        ui_output_bridge:
+                external: true
+        ui_input_bridge:
+                external: true
+        monitor_bridge:
+                external: true
