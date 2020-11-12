@@ -1,0 +1,69 @@
+we are working on nginx config file location is 
+
+/home/miworld/micro_server/docker/nginx_docker/mn_con/
+
+***this link will help to understand the toopicor systex
+
+https://www.serverlab.ca/tutorials/linux/web-servers-linux/how-to-configure-nginx-for-websockets/
+
+------------------------------------------------------------------------------------
+events{}
+http {
+	map $http_upgrade $connection_upgrade {
+		default upgrade;
+		''      close;
+	}
+	upstream new_list {
+		server 127.0.0.1:999new_lis8 weight=5;
+	}
+	server {
+                listen 80;
+                location ~ ^/(RedisViewSet/viewset/Cassandra/list|socket\.io){
+                	proxy_http_version 1.1;
+                	proxy_set_header Upgrade $http_upgrade;
+                	proxy_set_header Connection $connection_upgrade;
+                	proxy_pass http://new_list;
+                }
+	}
+}
+
+--------------------------------------------------------------------------------------
+
+explain:
+
+@@	map $http_upgrade $connection_upgrade
+
+here is link :- http://nginx.org/en/docs/http/websocket.html
+
+Since version 1.3.13, nginx implements special mode of operation that allows setting up a tunnel between a client and proxied server 
+if the proxied server returned a response with the code 101 (Switching Protocols), and the client asked for a protocol switch via the “Upgrade” header in a request. 
+
+By default, the connection will be closed if the proxied server does not transmit any data within 60 seconds.
+ This timeout can be increased with the proxy_read_timeout directive.Alternatively, the proxied server can be configured to periodically
+ send WebSocket ping frames to reset the timeout and check if the connection is still alive. 
+
+-----------------------------------------------------------------------------------------------
+upstream new_list {
+		server 127.0.0.1:9998 weight=5;
+	}
+-----------------------------------------------------------------------------------------------
+This means all requests for / go to the any of the servers listed under upstream XXX, with a preference for port 8000.
+Here the line is used to keep it on for ever like
+
+-------------------------------------------------------------------------------------------------------------
+
+                listen 80;
+                location ~ ^/(RedisViewSet/viewset/Cassandra/list|socket\.io){
+------------------------------------------------------------------------------------------------------------
+In this line the nginx listing the traffic from port of 80.
+// then the request will send to the location to -->  RedisViewSet/viewset/Cassandra/list|socket\.io
+
+---------------------------------------------------------------------------------------------------
+proxy_pass http://new_list
+---------------------------------------------------------------------------------------------------
+proxy_pass: - This directive instruct NGINX proxy all requests matching the location pattern to an upstream (backend) server. In the example given,
+ ws-backend is used, however, this is actually the name of an upstream group created further down in the configuration. The next few options are
+ the magic that enable WebSocket support. These must exist for the NGINX to correctly proxy WebSocket requests to upstream WebSocket servers.
+
+
+

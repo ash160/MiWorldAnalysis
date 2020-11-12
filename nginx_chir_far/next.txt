@@ -1,0 +1,10 @@
+our next task is 
+1.
+
+we have to look for the complete path as hit and trial.
+
+2.
+
+we have to look for the the nginx config file present on the etc folder
+
+we have to look for the logics loated on the files
